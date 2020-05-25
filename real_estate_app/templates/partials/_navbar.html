@@ -20,7 +20,7 @@
 		{% if 'about' in request.path %}
 	      <li class="nav-item active mr-3">
 	    {% else %}
-	     <li class="nav-item mr-3">
+	      <li class="nav-item mr-3">
 	    {% endif %}
 	        <a class="nav-link" href="{% url 'about' %}">About</a>
 	      </li>
@@ -34,11 +34,20 @@
 	    </ul>
 
 	    <ul class="navbar-nav ml-auto">
+	    {% if 'register' in request.path %}
+	      <li class="nav-item active mr-3">
+	    {% else %}
 	      <li class="nav-item mr-3">
+	     {% endif %}
 	        <a class="nav-link" href="{% url 'register' %}">
 	          <i class="fas fa-user-plus"></i> Register</a>
 	      </li>
+
+	      {% if 'login' in request.path %}
+	      <li class="nav-item active mr-3">
+	      {% else %}
 	      <li class="nav-item mr-3">
+	      {% endif %}
 	        <a class="nav-link" href="{% url 'login' %}">
 	          <i class="fas fa-sign-in-alt"></i>
 

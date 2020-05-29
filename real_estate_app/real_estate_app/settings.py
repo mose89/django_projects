@@ -126,28 +126,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 # For development
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#STATIC_URL = '/static/'
-#STATICFILES_DIRS = [
-#os.path.join(BASE_DIR, 'real_estate_app/static')
-#]
-
-# Media Folder Settings for development
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-#MEDIA_URL = '/media/'
-
-# For production
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_DIRS = [
 os.path.join(BASE_DIR, 'real_estate_app/static')
 ]
 
-
-# Media Folder Settings
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+# Media Folder Settings for development
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
 
 # Messages
 from django.contrib.messages import constants as messages

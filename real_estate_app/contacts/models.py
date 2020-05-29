@@ -3,7 +3,7 @@ from datetime import datetime as dt
 
 # Create your models here.
 
-class contacts(models.Model):
+class Contact(models.Model):
 	"""docstring for contacts"""
 	listing = models.CharField(max_length = 200)
 	listing_id = models.IntegerField()

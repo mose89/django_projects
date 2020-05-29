@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'partials/alerts.html'%}
   <!-- Breadcrumb -->
   <section id="bc" class="mt-3">
     <div class="container">
@@ -142,18 +143,34 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form action="{% url 'contact' %}" method='POST'>
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+              <input type="hidden" name="user_id" value="{{ user.id }}">
+            {% else %}
+              <input type="hidden" name="user_id" value="N/A">
+            {% endif %}
+            <input type="hidden" name="realtor_email" value="{{listing.realtor.email}}">
+            <input type="hidden" name="listing_id" value="{{listing.id}}">
             <div class="form-group">
               <label for="property_name" class="col-form-label">Property:</label>
-              <input type="text" name="listing" class="form-control" value="{{listing.title}}" disabled>
+              <input type="text" name="listing" class="form-control" value="{{listing.title}}" >
             </div>
             <div class="form-group">
               <label for="name" class="col-form-label">Name:</label>
+              {% if user.is_authenticated %}
+              <input type="text" name="name" class="form-control" value="{{ user.first_name }} {{ user.last_name }}" required>
+              {% else %}
               <input type="text" name="name" class="form-control" required>
+              {% endif %}
             </div>
             <div class="form-group">
               <label for="email" class="col-form-label">Email:</label>
+              {% if user.is_authenticated %}
+              <input type="email" name="email" class="form-control" value="{{ user.email }}" required>
+              {% else %}
               <input type="email" name="email" class="form-control" required>
+              {% endif %}
             </div>
             <div class="form-group">
               <label for="phone" class="col-form-label">Phone:</label>
